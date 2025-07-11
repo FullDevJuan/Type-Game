@@ -42,7 +42,7 @@ function gameOver() {
     results.innerHTML = `<p class="accuracy">${(successful / (successful + errores) * 100).toFixed(0)}%<span>Precisión real</span></p>
         <div>
             <p>${successful}<span>Caracteres acertados</span></p>
-            <p>${sec - currentTime}<span>Segundos</span></p>
+            <p>${((successful + errores) / (sec - currentTime))*60}<span>PPM</span></p>
             <p>${errores}<span>Errores</span></p>
         </div>`
     results.style.display = 'flex'
