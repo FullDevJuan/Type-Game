@@ -10,6 +10,7 @@ body{
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 *{
     margin: 0;
@@ -100,7 +101,8 @@ button {
 .results{
     display: none;
     gap: 20px;
-    margin-top: 80px;
+    position: absolute;
+    top: 5%;
 }
 
 .accuracy{
@@ -123,7 +125,7 @@ button {
 .results div{
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
 }
 
 .results div p{

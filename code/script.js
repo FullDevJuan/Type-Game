@@ -27,6 +27,7 @@ refresh.addEventListener('click', ()=>{
     renderText(text)
     refresh.blur()
     time.textContent = sec
+    results.style.display = 'none'
 })
 
 // cambiar de estado
