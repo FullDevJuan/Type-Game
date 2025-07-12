@@ -71,8 +71,6 @@ button {
     position: fixed;
     bottom: 20px;
     min-width: 170px;
-    align-items: stretch;
-    justify-content: space-between;
     align-items: flex-end;
     gap: 50px;
     border: 1px outset #ffffff41;
@@ -83,10 +81,21 @@ button {
     }
 }
 
+.times{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
 .times button{
     background-color: #333;
     color: #80ffc6;
     border: 1px inset #ffffff21;
+}
+
+.blockTime i{
+    pointer-events: none;
 }
 
 .refresh{
@@ -145,4 +154,9 @@ button {
         color: #fff;
         font-size: 1rem;
     }
+}
+
+.disabled{
+    cursor: not-allowed;
+    opacity: .5;
 }

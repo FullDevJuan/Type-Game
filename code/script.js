@@ -1,4 +1,4 @@
-const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident fugit consequuntur nesciunt consequatur eveniet quod quia repellat error! Placeat veritatis nihil illo nemo beatae aliquid sunt, incidunt culpa voluptate id!'
+const text = 'Lorem ipsum qué sit amet consectetur adipisicing elit. Provident fugit consequuntur nesciunt consequatur eveniet quod quia repellat error! Placeat veritatis nihil illo nemo beatae aliquid sunt, incidunt culpa voluptate id!'
 
 // elementos
 const containerText = document.querySelector('.containerText')
@@ -6,6 +6,8 @@ const refresh = document.querySelector('.refresh')
 const time = document.querySelector('.time')
 const btns = document.querySelectorAll('.times button')
 const results = document.querySelector('.results')
+refresh.disabled = true
+refresh.classList.add('disabled')
 
 let pressedKey = []
 let position = 0, 
@@ -13,7 +15,8 @@ successful = 0,
 errores = 0,
 timer = null, 
 sec,
-currentTime
+currentTime,
+freeMode = false
 
 // eventos
 // evento principal
@@ -23,10 +26,13 @@ document.addEventListener('keydown', handlerKeydown)
 refresh.addEventListener('click', ()=>{
     document.addEventListener('keydown', handlerKeydown)
     clear()
+    enableBtns()
     containerText.innerHTML = ''
     renderText(text)
     refresh.blur()
-    time.textContent = sec
+    refresh.disabled = true
+    refresh.classList.add('disabled')
+    time.textContent = freeMode ? '' : sec
     results.style.display = 'none'
 })
 
@@ -35,20 +41,24 @@ btns.forEach(btn =>{
     btn.addEventListener('click', handlerTimes)
 })
 
+
 // funciones
 // funcion game over
 function gameOver() {
     // manejo de datos
+    let PPM = freeMode ? ((successful + errores) / currentTime)*60 : ((successful + errores) / (sec - currentTime))*60
+    
     results.innerHTML = `<p class="accuracy">${(successful / (successful + errores) * 100).toFixed(0)}%<span>Precisión real</span></p>
         <div>
             <p>${successful}<span>Caracteres acertados</span></p>
-            <p>${((successful + errores) / (sec - currentTime))*60}<span>PPM</span></p>
+            <p>${PPM.toFixed(0)}<span>PPM</span></p>
             <p>${errores}<span>Errores</span></p>
         </div>`
     results.style.display = 'flex'
     
     // reestablecer valores
     clear()
+    enableBtns()
 }
 
 function clear() {
@@ -78,15 +88,25 @@ renderText(text)
 
 // funcion manejadora del evento principal
 function handlerKeydown(e) {
+    refresh.disabled = false
+    refresh.classList.remove('disabled')
     const { key } = e
     const letters = containerText.children
     
-    if (key == 'CapsLock' || key == 'Shift' || key == 'AltGraph' || key == 'Alt' || key == 'Control' || key == 'Meta' || key == 'Tab' || key == 'Backspace') return
+    if (key == 'Dead' || key == 'CapsLock' || key == 'Shift' || key == 'AltGraph' || key == 'Alt' || key == 'Control' || key == 'Meta' || key == 'Tab' || key == 'Backspace') return
 
     if(!timer){
+        btns.forEach(btn =>{
+            btn.classList.add('disabled')
+            btn.disabled = true
+        })
         timer = setInterval(()=>{
-            currentTime--
-            time.textContent = currentTime
+            if (freeMode) {
+                currentTime++
+            }else{
+                currentTime--
+                time.textContent = currentTime
+            }
 
             if (currentTime === 0) {
                 gameOver()
@@ -121,19 +141,38 @@ function handlerKeydown(e) {
 // funcion para tiempo inicial
 function handlerTimes(e) {
     let btn
-
-    if (e) {
-        btn = document.querySelector(`[data-s="${e.target.getAttribute('data-s')}"]`)
-
-        btns.forEach(btn => btn.classList.remove('active-btn'))
+    if (e && e.target.classList.contains('blockTime')) {
+        freeMode = true
+        time.textContent = ''
+        btn = e.target
+        sec = 0
+        currentTime = sec
+        
+    }else if(e){
+        btn = e.target
+        sec = btn.getAttribute('data-s')
+        currentTime = sec
+        time.textContent = sec
+        freeMode = false
     }else{
         btn = document.querySelector('.times button')
+        sec = btn.getAttribute('data-s')
+        currentTime = sec
+        time.textContent = sec
+        freeMode = false
     }
 
+    btns.forEach(btn => btn.classList.remove('active-btn'))
     btn.classList.add('active-btn')
-    time.textContent = btn.getAttribute('data-s')
-    sec = btn.getAttribute('data-s')
-    currentTime = sec
     btn.blur()
 }
 handlerTimes()
+
+// manejador de estado botones
+function enableBtns() {
+    let disabledBtns = document.querySelectorAll('.times .disabled')
+    disabledBtns.forEach(btn => {
+        btn.classList.remove('disabled')
+        btn.disabled = false
+    })
+}
