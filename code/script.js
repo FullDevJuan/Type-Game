@@ -128,7 +128,7 @@ function handlerKeydown(e) {
     const { key } = e
     const letters = containerText.querySelectorAll('span.caracter')
     
-    if (key == 'Dead' || key == 'CapsLock' || key == 'Shift' || key == 'AltGraph' || key == 'Alt' || key == 'Control' || key == 'Meta' || key == 'Tab' || key == 'Backspace') return
+    if (key == 'Dead' || key == 'CapsLock' || key == 'Shift' || key == 'AltGraph' || key == 'Alt' || key == 'Control' || key == 'Meta' || key == 'Tab' || key == 'Backspace' || key == 'Enter') return
 
     if(!timer){
         btns.forEach(btn =>{
