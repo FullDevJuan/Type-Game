@@ -26,8 +26,12 @@ body{
 }
 
 span {
+    display: inline-block;
     color: #ffffff39;
     position: relative;
+}
+.caracter{
+    display: inline;
 }
 
 button {
@@ -45,7 +49,29 @@ button {
 }
 
 .active{
-    border-left: 2px solid #80ffc6;
+    /* border-left: 2px solid #80ffc6; */
+}
+
+.active::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1.5px;
+    height: 1em;
+    background-color: #80ffc6;
+    transform: translateY(-50%) scaleY(1);
+    transform-origin: center;
+    animation: cursor-expand 1s ease-in-out infinite;
+}
+
+@keyframes cursor-expand{
+    0%, 100%{
+        transform: translateY(-50%) scaleY(0);
+    }
+    50%{
+        transform: translateY(-50%) scaleY(1);
+    }
 }
 
 .successful{
