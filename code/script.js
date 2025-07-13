@@ -77,6 +77,7 @@ function gameOver() {
             <p>${successful}<span>Caracteres acertados</span></p>
             <p>${PPM.toFixed(0)}<span>PPM</span></p>
             <p>${errores}<span>Errores</span></p>
+            ${freeMode ? `<p>${currentTime}s<span>Tiempo</span></p>` : ''}
         </div>`
     results.style.display = 'flex'
     
