@@ -1,4 +1,4 @@
-const text = 'Lorem ipsum qué sit amet consectetur adipisicing elit. Provident fugit consequuntur nesciunt consequatur eveniet quod quia repellat error! Placeat veritatis nihil illo nemo beatae aliquid sunt, incidunt culpa voluptate id!'
+const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident fugit consequuntur nesciunt consequatur eveniet quod quia repellat error! Placeat veritatis nihil illo nemo beatae aliquid sunt, incidunt culpa voluptate id!'
 
 // elementos
 const containerText = document.querySelector('.containerText')
