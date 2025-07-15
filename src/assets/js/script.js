@@ -56,7 +56,7 @@ function gameOver() {
             ${freeMode ? `<p>${currentTime}s<span>Tiempo</span></p>` : ''}
         </div>`
     results.style.display = 'flex'
-    
+    results.scrollIntoView({behavior: 'smooth'})
     // reestablecer valores
     clear()
     enableBtns()
