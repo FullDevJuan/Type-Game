@@ -1,28 +1,3 @@
-const words = [
-  "cielo", "rojo", "computadora", "teclado", "ratón", "pantalla", "software", "nube", "sol", "luz",
-  "árbol", "hoja", "otoño", "invierno", "primavera", "verano", "caminar", "correr", "saltando", "hablar",
-  "decir", "pensar", "sentir", "dormir", "soñar", "realidad", "verdad", "mentira", "vida", "muerte",
-  "azul", "verde", "amarillo", "morado", "blanco", "negro", "gris", "rosa", "naranja", "dorado",
-  "papel", "lápiz", "cuaderno", "libro", "página", "escribir", "leer", "dibujar", "pintar", "crear",
-  "música", "sonido", "voz", "cantar", "tocar", "instrumento", "melodía", "notas", "ritmo", "baile",
-  "comida", "fruta", "manzana", "banana", "pera", "uva", "fresa", "piña", "sandía", "melón",
-  "carne", "pollo", "pescado", "arroz", "pan", "sopa", "ensalada", "torta", "chocolate", "dulce",
-  "día", "noche", "tarde", "mañana", "hora", "minuto", "segundo", "tiempo", "reloj", "calendario",
-  "familia", "mamá", "papá", "hermano", "hermana", "tío", "tía", "primo", "prima", "abuelo",
-  "amigo", "amiga", "compañero", "profesor", "alumno", "colega", "vecino", "jefe", "cliente", "doctor",
-  "ciudad", "pueblo", "barrio", "calle", "avenida", "plaza", "parque", "puente", "edificio", "casa",
-  "perro", "gato", "pájaro", "pez", "conejo", "ratón", "caballo", "vaca", "oveja", "cerdo",
-  "auto", "camión", "bicicleta", "moto", "barco", "avión", "tren", "metro", "taxi", "bus",
-  "puerta", "ventana", "pared", "techo", "suelo", "mesa", "silla", "cama", "espejo", "cajón",
-  "ropa", "camisa", "pantalón", "falda", "vestido", "zapato", "calcetín", "sombrero", "abrigo", "bufanda",
-  "salud", "fiebre", "enfermedad", "medicina", "doctor", "hospital", "clínica", "cura", "dolor", "tratamiento",
-  "fácil", "difícil", "rápido", "lento", "fuerte", "débil", "alto", "bajo", "grande", "pequeño",
-  "nuevo", "viejo", "bueno", "malo", "feliz", "triste", "frío", "caliente", "seco", "mojado",
-  "izquierda", "derecha", "arriba", "abajo", "cerca", "lejos", "dentro", "fuera", "antes", "después",
-  "hoy", "ayer", "mañana", "siempre", "nunca", "tal vez", "quizás", "ahora", "luego", "pronto",
-  "ver", "mirar", "observar", "buscar", "encontrar", "tocar", "sentir", "oler", "escuchar", "probar"
-];
-
 // elementos
 const containerText = document.querySelector('.containerText')
 const refresh = document.querySelector('.refresh')
@@ -40,7 +15,8 @@ timer = null,
 sec,
 currentTime,
 freeMode = false,
-wordsNumber = 50
+wordsNumber = 50,
+wordLenguage = 'spanishWords'
 
 // eventos
 // evento principal
@@ -52,7 +28,7 @@ refresh.addEventListener('click', ()=>{
     clear()
     enableBtns()
     containerText.innerHTML = ''
-    renderText(words)
+    getWords(wordLenguage)
     refresh.blur()
     refresh.disabled = true
     refresh.classList.add('disabled')
@@ -96,7 +72,18 @@ function clear() {
     currentTime = sec
 }
 
-// funcion mostrar texto
+// funcion obtener las palabras
+function getWords(lenguageWords) {
+    fetch(`/src/data/${lenguageWords}.json`)
+    .then(req => req.json())
+    .then(res =>{
+        renderText(res)
+    })
+    .catch(err => console.log(err))    
+}
+getWords(wordLenguage)
+
+// funcion para mostrar el texto
 function renderText(words) {
     for (let w = 0; w < wordsNumber; w++) {
         const spanWord = document.createElement('span')
@@ -120,7 +107,6 @@ function renderText(words) {
         containerText.append(spanWord, spanSpace)
     }
 }
-renderText(words)
 
 // funcion manejadora del evento principal
 function handlerKeydown(e) {
