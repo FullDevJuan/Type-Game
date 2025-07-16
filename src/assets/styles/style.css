@@ -53,6 +53,11 @@ button {
 button:hover{
     scale: 1.1;
 }
+
+button i{
+    pointer-events: none;
+}
+
 .block{
     cursor: not-allowed;
     background-color: #80ffc691;
@@ -106,8 +111,7 @@ button:hover{
     left: 50%;
     transform: translateX(-50%);
     min-width: 170px;
-    align-items: flex-end;
-    gap: 50px;
+    gap: 30px;
     border: 1px outset #ffffff41;
 
     button{
@@ -116,7 +120,7 @@ button:hover{
     }
 }
 
-.times{
+.options div{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,14 +128,10 @@ button:hover{
 }
 
 
-.times button{
+.times button, .textAlign button{
     background-color: #333;
     color: #80ffc6;
     border: 1px inset #ffffff21;
-}
-
-.blockTime i{
-    pointer-events: none;
 }
 
 .refresh, .settings{
