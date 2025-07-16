@@ -230,6 +230,7 @@ function handlerText(e) {
 
     textBtns.forEach(btn => btn.classList.remove('active-btn'))
     target.classList.add('active-btn')
+    target.blur()
 }
 
 // funcion estado inciial de botones
