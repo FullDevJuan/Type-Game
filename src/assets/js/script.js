@@ -1,9 +1,13 @@
 // elementos
 const containerText = document.querySelector('.containerText')
 const refresh = document.querySelector('.refresh')
+const settings = document.querySelector('.settings')
+const modal = document.querySelector('.modal')
 const time = document.querySelector('.time')
 const btns = document.querySelectorAll('.times button')
 const results = document.querySelector('.results')
+const toggle_effect = document.querySelector('.toggle-effect')
+const lengBtns = document.querySelectorAll('.lenguages div button')
 refresh.disabled = true
 refresh.classList.add('disabled')
 
@@ -16,7 +20,7 @@ sec,
 currentTime,
 freeMode = false,
 wordsNumber = 50,
-wordLenguage = 'spanishWords'
+wordLenguage
 
 // eventos
 // evento principal
@@ -32,15 +36,33 @@ refresh.addEventListener('click', ()=>{
     refresh.blur()
     refresh.disabled = true
     refresh.classList.add('disabled')
-    time.textContent = freeMode ? '' : sec
+    time.textContent = freeMode ? '0' : sec
     results.style.display = 'none'
+})
+
+// evento para modal ajustes
+settings.addEventListener('click', (e)=>{
+    modal.style.transform = 'translateY(0)'
+    document.removeEventListener('keydown', handlerKeydown)
+})
+
+// cerrar modal
+document.addEventListener('click', (e)=>{
+    if (e.target.className === 'modal') {
+        modal.style.transform = 'translateY(-100%)'
+         document.addEventListener('keydown', handlerKeydown)
+    }
+})
+
+// toggle effect
+lengBtns.forEach(btn =>{
+    btn.addEventListener('click', toggleEffect)
 })
 
 // cambiar de estado
 btns.forEach(btn =>{
     btn.addEventListener('click', handlerTimes)
 })
-
 
 // funciones
 // funcion game over
@@ -56,12 +78,15 @@ function gameOver() {
             ${freeMode ? `<p>${currentTime}s<span>Tiempo</span></p>` : ''}
         </div>`
     results.style.display = 'flex'
-    results.scrollIntoView({behavior: 'smooth'})
+    setTimeout(() => {
+        results.scrollIntoView({behavior: 'smooth'})
+    }, 500);
     // reestablecer valores
     clear()
     enableBtns()
 }
 
+// reestablecer valores
 function clear() {
     pressedKey = []
     position = 0
@@ -72,6 +97,20 @@ function clear() {
     currentTime = sec
 }
 
+// toggle effect y wordLenguage
+function toggleEffect(e) {
+    let btn = document.querySelector('.lenguages div button')
+    if (e) btn = e.target
+    
+    lengBtns.forEach(btn => btn.classList.remove('lengActive'))
+    btn.classList.add('lengActive')
+    wordLenguage = btn.getAttribute('data-len')
+    getWords(wordLenguage)
+    toggle_effect.style.width = `${btn.offsetWidth}px`
+    toggle_effect.style.left = `${btn.offsetLeft}px`
+    refresh.click()
+}toggleEffect()
+
 // funcion obtener las palabras
 function getWords(lenguageWords) {
     fetch(`/src/data/${lenguageWords}.json`)
@@ -81,10 +120,11 @@ function getWords(lenguageWords) {
     })
     .catch(err => console.log(err))    
 }
-getWords(wordLenguage)
+// getWords(wordLenguage)
 
 // funcion para mostrar el texto
 function renderText(words) {
+    containerText.innerHTML = ''
     for (let w = 0; w < wordsNumber; w++) {
         const spanWord = document.createElement('span')
         spanWord.classList.add('word')
@@ -118,10 +158,7 @@ function handlerKeydown(e) {
     if (key == 'Dead' || key == 'CapsLock' || key == 'Shift' || key == 'AltGraph' || key == 'Alt' || key == 'Control' || key == 'Meta' || key == 'Tab' || key == 'Backspace' || key == 'Enter') return
 
     if(!timer){
-        btns.forEach(btn =>{
-            btn.classList.add('disabled')
-            btn.disabled = true
-        })
+        disabledBtns()
         timer = setInterval(()=>{
             if (freeMode) {
                 currentTime++
@@ -165,25 +202,25 @@ function handlerTimes(e) {
     let btn
     if (e && e.target.classList.contains('blockTime')) {
         freeMode = true
-        time.textContent = ''
+        time.style.opacity = '0'
         btn = e.target
         sec = 0
-        currentTime = sec
         
     }else if(e){
         btn = e.target
         sec = btn.getAttribute('data-s')
-        currentTime = sec
         time.textContent = sec
+        time.style.opacity = '1'
         freeMode = false
     }else{
         btn = document.querySelector('.times button')
         sec = btn.getAttribute('data-s')
-        currentTime = sec
         time.textContent = sec
+        time.style.opacity = '1'
         freeMode = false
     }
-
+    
+    currentTime = sec
     btns.forEach(btn => btn.classList.remove('active-btn'))
     btn.classList.add('active-btn')
     btn.blur()
@@ -191,10 +228,21 @@ function handlerTimes(e) {
 handlerTimes()
 
 // manejador de estado botones
+function disabledBtns() {
+    btns.forEach(btn => {
+        btn.classList.add('disabled')
+        btn.disabled = true
+    })
+    settings.classList.add('disabled')
+    settings.disabled = true
+}
+
 function enableBtns() {
-    let disabledBtns = document.querySelectorAll('.times .disabled')
-    disabledBtns.forEach(btn => {
+    btns.forEach(btn => {
         btn.classList.remove('disabled')
         btn.disabled = false
     })
+
+    settings.classList.remove('disabled')
+    settings.disabled = false
 }

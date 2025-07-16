@@ -22,8 +22,24 @@
             <button data-s="60">60s</button>
             <button class="blockTime"><i class='bxr  bx-alarm-slash'  ></i></button> 
         </div>
-        <button class="refresh"><i class='bxr  bx-refresh-cw'  ></i></button>  
+        <div class="general">
+            <button class="refresh"><i class='bxr  bx-refresh-cw'  ></i></button>  
+            <button class="settings"><i class='bxr  bx-cog'  ></i> </button>
+        </div>
     </section>
+
+    <div class="modal">
+        <div class="modalContent">
+            <div class="lenguages">
+                <p><i class='bxr  bx-translate'  ></i>Lenguaje</p>
+                <div>
+                    <span class="toggle-effect"></span>
+                    <button data-len="spanishWords">Español</button>
+                    <button data-len="englishWords">English</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="src/assets/js/script.js"></script>
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

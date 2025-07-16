@@ -47,6 +47,11 @@ button {
     border: none;
     cursor: pointer;
     padding: 5px;
+    transition: all .3s ease;
+}
+
+button:hover{
+    scale: 1.1;
 }
 .block{
     cursor: not-allowed;
@@ -118,6 +123,7 @@ button {
     gap: 5px;
 }
 
+
 .times button{
     background-color: #333;
     color: #80ffc6;
@@ -128,13 +134,16 @@ button {
     pointer-events: none;
 }
 
-.refresh{
+.refresh, .settings{
     background-color: #80ffc6;
     color: #333;
+    font-size: 1.2rem;
 }
 
 .active-btn{
     background-color: transparent !important;
+    border-left: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
 }
 
 .results{
@@ -165,7 +174,8 @@ button {
 }
 .results div{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 380px;
     gap: 5px;
 }
 
@@ -191,4 +201,79 @@ button {
 .disabled{
     cursor: not-allowed;
     opacity: .5;
+}
+
+.modal{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    transform: translateY(-100%);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+
+    i{
+        color: #80ffc6;
+    }
+}
+
+.modalContent{
+    font-size: 1.3rem;
+    width: fit-content;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #222;
+    padding: 20px;
+}
+
+.lenguages{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    p{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    div{
+        display: flex;
+        position: relative;
+        font-size: 1rem;
+        background-color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+        
+        span{
+            position: absolute;
+            border-radius: 10px;
+            background-color: #80ffc6;
+            border: 2px solid #fff;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 90px;
+            transition: all .3s ease;
+        }
+
+        button{
+            background-color: transparent;
+            padding: 5px 50px;
+            z-index: 10;
+            width: 90px;
+        }
+
+        .lengActive{
+            color: #555;
+            font-weight: bold;
+        }
+
+        button:hover{
+            scale: none;
+        }
+
+    }
 }
