@@ -1,55 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Typing game</title>
-    <link rel="shortcut icon" href="src/assets/imgs/teclado.png" type="image/x-icon">
-    <link rel="stylesheet" href="src/assets/styles/style.css">
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      href="src/assets/imgs/teclado.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="src/assets/styles/style.css" />
+    <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <section class="sectionText">
-        <span class="time"></span>
-        <article class="containerText"></article>
+      <span class="time"></span>
+      <article class="containerText"></article>
     </section>
     <section class="results"></section>
     <section class="options">
-        <div class="times">
-            <button data-s="30">30s</button>
-            <button data-s="40">40s</button>
-            <button data-s="50">50s</button>
-            <button data-s="60">60s</button>
-            <button class="blockTime"><i class='bxr  bx-alarm-slash'  ></i></button> 
-        </div>
-        <div class="textAlign">
-            <button title="left" data-align="left"><i class='bxr  bx-align-left'  ></i> </button>
-            <button title="center" data-align="center"><i class='bxr  bx-align-center'  ></i> </button>
-            <button title="right" data-align="right"><i class='bxr  bx-align-right'  ></i> </button>
-            <button title="justify" data-align="justify"><i class='bxr  bx-align-justify'  ></i> </button>
-        </div>
-        <div class="general">
-            <button class="refresh"><i class='bxr  bx-refresh-cw'  ></i></button>  
-            <button class="settings"><i class='bxr  bx-cog'  ></i> </button>
-        </div>
+      <div class="times">
+        <button title="30 segundos" data-s="30">30s</button>
+        <button title="40 segundos" data-s="40">40s</button>
+        <button title="60 segundos" data-s="50">50s</button>
+        <button title="60 segundos" data-s="60">60s</button>
+        <button title="sin tiempo" class="blockTime">
+          <i class="bxr bx-alarm-slash"></i>
+        </button>
+      </div>
+      <div class="textAlign">
+        <button title="left" data-align="left">
+          <i class="bxr bx-align-left"></i>
+        </button>
+        <button title="center" data-align="center">
+          <i class="bxr bx-align-center"></i>
+        </button>
+        <button title="right" data-align="right">
+          <i class="bxr bx-align-right"></i>
+        </button>
+        <button title="justify" data-align="justify">
+          <i class="bxr bx-align-justify"></i>
+        </button>
+      </div>
+      <div class="general">
+        <button class="refresh"><i class="bxr bx-refresh-cw"></i></button>
+        <button class="settings"><i class="bxr bx-cog"></i></button>
+      </div>
     </section>
 
     <div class="modal">
-        <div class="modalContent">
-            <div class="lenguages">
-                <p><i class='bxr  bx-translate'  ></i>Lenguaje</p>
-                <div>
-                    <span class="toggle-effect"></span>
-                    <button data-len="spanishWords">Español</button>
-                    <button data-len="englishWords">English</button>
-                </div>
-            </div>
+      <div class="modalContent">
+        <div class="lenguages">
+          <p><i class="bxr bx-translate"></i>Lenguaje</p>
+          <div>
+            <span class="toggle-effect"></span>
+            <button data-len="spanishWords">Español</button>
+            <button data-len="englishWords">English</button>
+          </div>
         </div>
+      </div>
     </div>
     <script src="src/assets/js/script.js"></script>
     <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-</body>
+  </body>
 </html>
