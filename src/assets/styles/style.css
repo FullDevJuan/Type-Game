@@ -213,10 +213,10 @@ button i {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(5px);
+}
 
-  i {
-    color: #80ffc6;
-  }
+.modal i {
+  color: #80ffc6;
 }
 
 .modalContent {
@@ -268,13 +268,13 @@ button i {
       width: 90px;
     }
 
-    .lengActive {
-      color: #555;
-      font-weight: bold;
-    }
-
     button:hover {
       scale: none;
     }
   }
+}
+.lengActive,
+.lengActive i {
+  color: #555;
+  font-weight: bold;
 }
