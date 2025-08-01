@@ -146,7 +146,6 @@ async function getWords(wordLenguage) {
 
 // funcion para mostrar el texto
 function renderText(words) {
-  console.log(words);
   containerText.innerHTML = "";
   for (let w = 0; w < wordsNumber; w++) {
     const spanWord = document.createElement("span");
