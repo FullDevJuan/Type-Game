@@ -9,6 +9,7 @@ const textBtns = document.querySelectorAll(".textAlign button");
 const results = document.querySelector(".results");
 const toggle_effect = document.querySelector(".toggle-effect");
 const lengBtns = document.querySelectorAll(".lenguages div button");
+const inputWordsNumber = document.getElementById("wordsNumber");
 refresh.disabled = true;
 refresh.classList.add("disabled");
 
@@ -70,6 +71,9 @@ textBtns.forEach((btn) => {
   btn.addEventListener("click", handlerText);
 });
 
+// handler wordsNumber
+inputWordsNumber.addEventListener("input", handleWordsNumber);
+
 // funciones
 // funcion game over
 function gameOver() {
@@ -123,6 +127,13 @@ function toggleEffect(e) {
 }
 toggleEffect();
 
+function handleWordsNumber(e) {
+  const { value } = e.target;
+  if (value < 10 || value > 1000) return;
+  wordsNumber = value;
+  getWords(wordLenguage);
+}
+
 // funcion obtener las palabras
 async function getWords(wordLenguage) {
   let wordsToRender = {};
@@ -146,7 +157,6 @@ async function getWords(wordLenguage) {
 
 // funcion para mostrar el texto
 function renderText(words) {
-  console.log(words);
   containerText.innerHTML = "";
   for (let w = 0; w < wordsNumber; w++) {
     const spanWord = document.createElement("span");
