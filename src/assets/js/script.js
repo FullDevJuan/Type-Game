@@ -129,7 +129,7 @@ toggleEffect();
 
 function handleWordsNumber(e) {
   const { value } = e.target;
-  if (value < 10 || value > 1000) return;
+  if (value < 10 || value > 100) return;
   wordsNumber = value;
   getWords(wordLenguage);
 }

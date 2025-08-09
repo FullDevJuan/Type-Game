@@ -24,12 +24,10 @@ body {
 }
 
 .containerText {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   width: 70%;
-  max-width: 600px;
+  max-width: 900px;
   line-height: 1.5;
-  height: 230px;
-  overflow: auto;
 }
 
 .containerText::-webkit-scrollbar {
