@@ -24,10 +24,21 @@ body {
 }
 
 .containerText {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   width: 70%;
   max-width: 600px;
   line-height: 1.5;
+  height: 230px;
+  overflow: auto;
+}
+
+.containerText::-webkit-scrollbar {
+  width: 5px;
+}
+
+.containerText::-webkit-scrollbar-thumb {
+  background: #80ffc6;
+  border-radius: 10px;
 }
 
 span {
@@ -227,6 +238,9 @@ button i {
   border-radius: 10px;
   background-color: #222;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .lenguages {
@@ -277,4 +291,19 @@ button i {
 .lengActive i {
   color: #555;
   font-weight: bold;
+}
+
+.wordsNumber input {
+  padding: 7px;
+  width: 100%;
+  margin-top: 5px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.wordsNumber span {
+  font-size: 0.9rem;
 }
