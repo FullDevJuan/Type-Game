@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juego de Mecanografía | Practica tu velocidad y precisión al escribir</title>
+    <title>
+      Juego de Mecanografía | Practica tu velocidad y precisión al escribir
+    </title>
     <link
       rel="shortcut icon"
       href="src/assets/imgs/teclado.png"
@@ -31,33 +33,57 @@
     <section class="results"></section>
     <section class="options">
       <div class="times">
-        <button title="30 segundos" data-s="30">30s</button>
-        <button title="40 segundos" data-s="40">40s</button>
-        <button title="60 segundos" data-s="50">50s</button>
-        <button title="60 segundos" data-s="60">60s</button>
-        <button title="sin tiempo" class="blockTime">
+        <button aria-label="Segundos" title="30 segundos" data-s="30">
+          30s
+        </button>
+        <button aria-label="Segundos" title="40 segundos" data-s="40">
+          40s
+        </button>
+        <button aria-label="Segundos" title="60 segundos" data-s="50">
+          50s
+        </button>
+        <button aria-label="Segundos" title="60 segundos" data-s="60">
+          60s
+        </button>
+        <button aria-label="Segundos" title="sin tiempo" class="blockTime">
           <i class="bxr bx-alarm-slash"></i>
         </button>
       </div>
       <div class="textAlign">
-        <button title="text left" data-align="left">
+        <button
+          aria-label="Alineación de texto"
+          title="text left"
+          data-align="left"
+        >
           <i class="bxr bx-align-left"></i>
         </button>
-        <button title="text center" data-align="center">
+        <button
+          aria-label="Alineación de texto"
+          title="text center"
+          data-align="center"
+        >
           <i class="bxr bx-align-center"></i>
         </button>
-        <button title="text right" data-align="right">
+        <button
+          aria-label="Alineación de texto"
+          title="text right"
+          data-align="right"
+        >
           <i class="bxr bx-align-right"></i>
         </button>
-        <button title="text justify" data-align="justify">
+        <button
+          aria-label="Alineación de texto"
+          title="text justify"
+          data-align="justify"
+        >
           <i class="bxr bx-align-justify"></i>
         </button>
       </div>
       <div class="general">
-        <button title="Reiniciar" class="refresh">
+        <button aria-label="Reiniciar" title="Reiniciar" class="refresh">
           <i class="bxr bx-refresh-cw"></i>
         </button>
-        <button title="Ajustes" class="settings">
+        <button aria-label="Ajustes" title="Ajustes" class="settings">
           <i class="bxr bx-cog"></i>
         </button>
       </div>
@@ -69,9 +95,9 @@
           <p><i class="bxr bx-translate"></i>Lenguaje</p>
           <div>
             <span class="toggle-effect"></span>
-            <button data-len="spanish">Español</button>
-            <button data-len="english">English</button>
-            <button data-len="randomWords">
+            <button aria-label="Lenguaje" data-len="spanish">Español</button>
+            <button aria-label="Lenguaje" data-len="english">English</button>
+            <button aria-label="Lenguaje aleatorio" data-len="randomWords">
               <i class="bxr bx-shuffle"></i>
             </button>
           </div>
